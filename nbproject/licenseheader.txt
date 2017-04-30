@@ -1,0 +1,10 @@
+<#if licenseFirst??>
+${licenseFirst}
+</#if>
+${licensePrefix}Tugas Besar - Pemrograman Berorientasi Objek
+${licensePrefix}Muhammad Maulud H. R. | 1301154166
+${licensePrefix}M. Widadio Ilham	  | 1301154360
+${licensePrefix}Afra W. D.	  | 1301150432
+<#if licenseLast??>
+${licenseLast}
+</#if>
