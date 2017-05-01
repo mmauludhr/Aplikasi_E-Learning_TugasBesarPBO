@@ -11,5 +11,9 @@ package bin;
  * @author M Maulud H R
  */
 public class Kelas {
+    private String namaKelas;
+    private int jmlh_mahasiswa;
+    private String jurusan;
     
+    //Not Done Yet
 }
