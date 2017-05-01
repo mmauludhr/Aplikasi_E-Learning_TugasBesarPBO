@@ -57,7 +57,6 @@ public class Authentication extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         setLocationByPlatform(true);
-        setPreferredSize(new java.awt.Dimension(1000, 600));
         setResizable(false);
 
         panelLogin.setBackground(new java.awt.Color(51, 204, 255));
