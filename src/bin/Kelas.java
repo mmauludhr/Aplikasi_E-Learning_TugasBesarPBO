@@ -4,12 +4,12 @@
  * M. Widadio Ilham         | 1301154360
  * Afra W. D.               | 1301150432
  */
-package data;
+package bin;
 
 /**
  *
  * @author M Maulud H R
  */
-public class MataKuliah {
+public class Kelas {
     
 }

@@ -4,7 +4,7 @@
  * M. Widadio Ilham         | 1301154360
  * Afra W. D.               | 1301150432
  */
-package data;
+package bin;
 
 /**
  *
@@ -15,6 +15,7 @@ public abstract class Orang {
     private String tgl_lahir;
     private int umur;
     private String tmpt_lahir;
+    private char gender;
     private String alamat;
 
     public String getNama() {
@@ -50,6 +51,14 @@ public abstract class Orang {
         this.tmpt_lahir = tmpt_lahir;
     }
 
+    public char getGender() {
+        return gender;
+    }
+
+    public void setGender(char gender) {
+        this.gender = gender;
+    }
+    
     public String getAlamat() {
         return alamat;
     }
