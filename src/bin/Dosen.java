@@ -5,6 +5,7 @@
  * Afra W. D.               | 1301150432
  */
 package bin;
+import java.util.ArrayList;
 import java.util.List;
 /**
  *
@@ -12,9 +13,7 @@ import java.util.List;
  */
 public class Dosen extends Orang{
     private String NIP;
-//    private int jmlh_kelas = 0;
-//    private Kelas[] daftarKelas;
-    private List daftarKelas;
+    private ArrayList<Kelas> daftarKelas;
     
     public Dosen(String nama, String tgl_lahir, String tmpt_lahir, String NIP){
         super.setNama(nama);
