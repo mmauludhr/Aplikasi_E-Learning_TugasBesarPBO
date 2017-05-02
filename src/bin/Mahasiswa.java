@@ -15,8 +15,9 @@ public class Mahasiswa extends Orang{
 
     public Mahasiswa(String nama, String tgl_lahir, String tmpt_lahir, char jenis_k, String NIM){
         super.setNama(nama);
-        super.setTgl_lahir(tgl_lahir);
-        super.setTmpt_lahir(tmpt_lahir);
+        super.setTglLahir(tgl_lahir);
+        super.setTmptLahir(tmpt_lahir);
+        super.setGender(jenis_k);
         this.NIM = NIM;
     }
     
