@@ -11,29 +11,29 @@ package bin;
  * @author M Maulud H R
  */
 public class MataKuliah {
+
     String nama_mk;
     String kode_mk;
-    
-    public MataKuliah(String nama_mk, String kode_mk){
+
+    public MataKuliah(String nama_mk, String kode_mk) {
         this.kode_mk = kode_mk;
         this.nama_mk = nama_mk;
     }
 
-    public String getNama_mk() {
+    public String getNamaMK() {
         return nama_mk;
     }
 
-    public void setNama_mk(String nama_mk) {
+    public void setNamaMK(String nama_mk) {
         this.nama_mk = nama_mk;
     }
 
-    public String getKode_mk() {
+    public String getKodeMK() {
         return kode_mk;
     }
 
-    public void setKode_mk(String kode_mk) {
+    public void setKodeMK(String kode_mk) {
         this.kode_mk = kode_mk;
     }
-    
-    
+
 }
