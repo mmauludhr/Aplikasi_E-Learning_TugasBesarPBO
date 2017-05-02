@@ -19,10 +19,10 @@ public class Dosen extends Orang {
     private ArrayList<Kelas> daftar_kelas;
     private Kelas kelas;
 
-    public Dosen(String nama, String tgl_lahir, String tmpt_lahir, String NIP) {
+    public Dosen(String nama, String tgl_lahir, String tmpt_lahir, char gender, String NIP) {
         super.setNama(nama);
-        super.setTgl_lahir(tgl_lahir);
-        super.setTmpt_lahir(tmpt_lahir);
+        super.setTglLahir(tgl_lahir);
+        super.setTmptLahir(tmpt_lahir);
         this.NIP = NIP;
     }
 

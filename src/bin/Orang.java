@@ -26,11 +26,11 @@ public abstract class Orang {
         this.nama = nama;
     }
 
-    public String getTgl_lahir() {
+    public String getTglLahir() {
         return tgl_lahir;
     }
 
-    public void setTgl_lahir(String tgl_lahir) {
+    public void setTglLahir(String tgl_lahir) {
         this.tgl_lahir = tgl_lahir;
     }
 
@@ -43,11 +43,11 @@ public abstract class Orang {
         this.umur = umur;
     }
 
-    public String getTmpt_lahir() {
+    public String getTmptLahir() {
         return tmpt_lahir;
     }
 
-    public void setTmpt_lahir(String tmpt_lahir) {
+    public void setTmptLahir(String tmpt_lahir) {
         this.tmpt_lahir = tmpt_lahir;
     }
 
