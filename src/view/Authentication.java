@@ -57,7 +57,6 @@ public class Authentication extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         setLocationByPlatform(true);
-        setPreferredSize(new java.awt.Dimension(1000, 600));
         setResizable(false);
 
         panelLogin.setBackground(new java.awt.Color(51, 204, 255));
@@ -97,8 +96,12 @@ public class Authentication extends javax.swing.JFrame {
         jPasswordField1.setBackground(new java.awt.Color(0, 204, 255));
         jPasswordField1.setFont(new java.awt.Font("Myriad Pro", 0, 14)); // NOI18N
         jPasswordField1.setForeground(new java.awt.Color(255, 255, 255));
-        jPasswordField1.setText("password");
         jPasswordField1.setBorder(null);
+        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordField1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelLoginLayout = new javax.swing.GroupLayout(panelLogin);
         panelLogin.setLayout(panelLoginLayout);
@@ -295,6 +298,10 @@ public class Authentication extends javax.swing.JFrame {
     private void tfTempatLahirSUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfTempatLahirSUActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfTempatLahirSUActionPerformed
+
+    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordField1ActionPerformed
 
     /**
      * @param args the command line arguments

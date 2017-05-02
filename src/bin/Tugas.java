@@ -11,5 +11,39 @@ package bin;
  * @author M Maulud H R
  */
 public class Tugas {
-    
+
+    private String nama_tugas;
+    private int jmlh_soal;
+    private String desc;
+
+    public Tugas(String nama_tugas, int jmlh_soal, String desc) {
+        this.nama_tugas = nama_tugas;
+        this.jmlh_soal = jmlh_soal;
+        this.desc = desc;
+    }
+
+    public void setNamaTugas(String nama_tugas) {
+        this.nama_tugas = nama_tugas;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public int getJmlhSoal() {
+        return jmlh_soal;
+    }
+
+    public void setJmlhSoal(int jmlh_soal) {
+        this.jmlh_soal = jmlh_soal;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public String getNamaTugas() {
+        return nama_tugas;
+    }
+
 }
