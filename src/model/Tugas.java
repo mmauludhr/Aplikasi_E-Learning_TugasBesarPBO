@@ -4,7 +4,7 @@
  * M. Widadio Ilham         | 1301154360
  * Afra W. D.               | 1301150432
  */
-package bin;
+package model;
 
 /**
  *
@@ -15,6 +15,7 @@ public class Tugas {
     private String nama_tugas;
     private int jmlh_soal;
     private String desc;
+    private String kode_tugas;
 
     public Tugas(String nama_tugas, int jmlh_soal, String desc) {
         this.nama_tugas = nama_tugas;
@@ -46,4 +47,13 @@ public class Tugas {
         return nama_tugas;
     }
 
+    public String getKode_tugas() {
+        return kode_tugas;
+    }
+
+    public void setKode_tugas(String kode_tugas) {
+        this.kode_tugas = kode_tugas;
+    }
+
+    
 }
