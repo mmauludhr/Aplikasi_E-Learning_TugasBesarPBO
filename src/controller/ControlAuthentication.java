@@ -6,7 +6,7 @@
  */
 package controller;
 
-import bin.Aplikasi;
+import model.Aplikasi;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import view.Authentication;
