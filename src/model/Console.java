@@ -118,8 +118,8 @@ public class Console {
     public void hapusMahasiswa() {
         Scanner input = new Scanner(System.in);
 
-        System.out.print("Masukan NIM     : ");
-        String NIM = input.nextLine();
+//        System.out.print("Masukan NIM     : ");
+//        String NIM = input.nextLine();
 
     }
 
@@ -353,9 +353,10 @@ public class Console {
         System.out.println("Masukan data Kelas: ");
         System.out.print("Nama Kelas        : "); String nama_mk = input.nextLine();
         System.out.print("Kode Kelas        : "); String kode_mk = input.nextLine();
+        System.out.print("Jurusan           : "); String jurusan = input.nextLine();
         
         //searching unique attribute
-        currentDosen.createKelas(nama_mk, kode_mk);
+        currentDosen.createKelas(nama_mk, kode_mk, jurusan);
         //add to database
         
         System.out.println("Berhasil menambahkan kelas!");
@@ -364,6 +365,9 @@ public class Console {
     
     public void tambahTugas(){
         Scanner input = new Scanner(System.in);
+        Scanner inputInt = new Scanner(System.in);
+        boolean success = false;
+        
         if(currentDosen.getDaftarKelas().size() == 0){
             System.out.println("Belum terdapat kelas!");
         }else{
@@ -373,17 +377,20 @@ public class Console {
             System.out.println("Masukan data tugas: ");
             System.out.print("Judul Tugas       : "); String judul = input.nextLine();
             System.out.print("Deskripsi Tugas   : "); String desc = input.nextLine();
-            System.out.print("Jumlah Soal       : "); int jmlh_soal = input.nextInt(); //If error check here!!!
+            System.out.print("Jumlah Soal       : "); int jmlh_soal = inputInt.nextInt(); //If error check here!!!
 
             //searching unique attribute
             for(Kelas k : currentDosen.getDaftarKelas()){
                 if(k.getKode_kelas().equals(kode_mk)){
                     k.createTugas(judul, jmlh_soal, desc);
+            //add to database
+                    System.out.println("Berhasil menambahkan kelas!");
+                    success = true;
                 }
             }
-            //add to database
-
-            System.out.println("Berhasil menambahkan kelas!");
+            if(success == false){
+                System.out.println("Kelas tidak terdaftar!");
+            }
         }
     }
     
@@ -396,6 +403,7 @@ public class Console {
     }
     
     public void cariKelas(){
+        System.out.println("Jumlah kelas currentDosen = "+currentDosen.getDaftarKelas().size());
         
     }
     
@@ -497,10 +505,10 @@ public class Console {
                 
                 switch(opt){
                     case 1:
-                        
+                        tambahKelas();
                         break;
                     case 2:
-                        
+                        tambahTugas();
                         break;
                     case 3:
                         
@@ -509,7 +517,7 @@ public class Console {
                         
                         break;
                     case 5:
-                        
+                        cariKelas();
                         break;
                     case 6:
                         
@@ -523,9 +531,9 @@ public class Console {
                         System.out.println("Mohon pilih menu yang tersedia.");
                 }
             } catch (Exception e) {
-                System.out.println("Trejadi error!");
+                System.out.println("Trejadi error! dammit!");
             }
-        }while (logout==true);
+        }while (logout!=true);
     }
 
     public void menuMahasiswa() {

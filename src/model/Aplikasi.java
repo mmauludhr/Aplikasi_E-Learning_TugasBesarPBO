@@ -22,6 +22,8 @@ public class Aplikasi {
         daftarMatakuliah = new ArrayList<>();
         daftarDosen = new ArrayList<>();
         daftarMahasiswa = new ArrayList<>();
+        
+        //lakukan load database disini
     }
     
     public void load(ArrayList<MataKuliah> daftarMataKuliah, ArrayList<Dosen> daftarDosen, ArrayList<Mahasiswa> daftarMahasiswa){

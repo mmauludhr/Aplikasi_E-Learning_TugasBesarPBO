@@ -50,15 +50,17 @@ public class Dosen extends Orang implements Akun {
         return "Dosen";
     }
 
-    public void createKelas(String nama_kelas, String jurusan) {
-        if (isDaftarKelasFull() == false) {
-            kelas = new Kelas(nama_kelas, jurusan);
-            for (int i = 0; i <= daftar_kelas.size(); i++) {
-                if (daftar_kelas.get(i) == null) {
-                    daftar_kelas.set(i, kelas);
-                }
-            }
-        }
+    public void createKelas(String nama_kelas, String kode_kelas, String jurusan) {
+        daftar_kelas.add(new Kelas(nama_kelas, kode_kelas, jurusan));
+        
+//        if (isDaftarKelasFull() == false) {
+//            kelas = new Kelas(nama_kelas, kode_kelas);
+//            for (int i = 0; i <= daftar_kelas.size(); i++) {
+//                if (daftar_kelas.get(i) == null) {
+//                    daftar_kelas.set(i, kelas);
+//                }
+//            }
+//        }
     }
 
     public Kelas getKelas(int index) {
@@ -91,12 +93,12 @@ public class Dosen extends Orang implements Akun {
         return daftar_kelas;
     }
 
-    public boolean isDaftarKelasFull() {
-        if (daftar_kelas.size() == 2) {
-            return true;
-        }
-        return false;
-    }
+//    public boolean isDaftarKelasFull() {
+//        if (daftar_kelas.size() == 2) {
+//            return true;
+//        }
+//        return false;
+//    }
 
     @Override
     public String getUsername() {
