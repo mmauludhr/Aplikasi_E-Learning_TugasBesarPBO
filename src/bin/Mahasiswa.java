@@ -10,8 +10,10 @@ package bin;
  *
  * @author M Maulud H R
  */
-public class Mahasiswa extends Orang{
+public class Mahasiswa extends Orang implements Akun {
     private String NIM;
+    private String username;
+    private String password;
 
     public Mahasiswa(String nama, String tgl_lahir, String tmpt_lahir, char jenis_k, String NIM){
         super.setNama(nama);
@@ -28,6 +30,26 @@ public class Mahasiswa extends Orang{
     @Override
     public String pekerjaan() {
         return "Mahasiswa";
+    }
+
+    @Override
+    public String getUsername() {
+        return username;   
+    }
+
+    @Override
+    public void setUsername(String username) {
+        this.username =username;
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public void setPassword(String password) {
+        this.password = password;
     }
     
     

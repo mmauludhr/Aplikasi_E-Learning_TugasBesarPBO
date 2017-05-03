@@ -10,25 +10,17 @@ package bin;
  *
  * @author Muhammad Maulud H R
  */
-public class Akun {
-    private String username;
-    private String password;
+public interface Akun {
+//    private String username;
+//    private String password;
 
-    public String getUsername() {
-        return username;
-    }
+    public String getUsername();
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+    public void setUsername(String username);
 
-    public String getPassword() {
-        return password;
-    }
+    public String getPassword() ;
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    public void setPassword(String password) ;
     
     
 }
