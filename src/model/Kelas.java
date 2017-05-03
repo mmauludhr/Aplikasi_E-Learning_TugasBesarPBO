@@ -25,10 +25,16 @@ public class Kelas {
     private ArrayList<Tugas> daftar_tugas;
    
 
-    public Kelas(String nama_kelas, String jurusan) {
+//    public Kelas(String nama_kelas, String jurusan) {
+//        this.nama_kelas = nama_kelas;
+//        this.jurusan = jurusan;
+//        this.jmlh_mahasiswa = 25;
+//    }
+    
+    public Kelas(String nama_kelas, String kode_kelas, String jurusan){
         this.nama_kelas = nama_kelas;
+        this.kode_kelas = kode_kelas;
         this.jurusan = jurusan;
-        this.jmlh_mahasiswa = 25;
     }
 
     public String getNamaKelas() {
@@ -134,11 +140,6 @@ public class Kelas {
             return true;
         }
         return false;
-    }
-
-    //Output 
-    public void printAllTugas() {
-
     }
 
 }

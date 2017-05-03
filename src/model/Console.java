@@ -16,6 +16,10 @@ import model.Aplikasi;
 public class Console {
 
     private Aplikasi model = new Aplikasi();
+    private Dosen currentDosen;
+    private Mahasiswa currentMahasiswa;
+    private boolean aksesDosen = false;
+    private boolean aksesMahasiswa = false;
     //Lakukan koneksi dengan database
 
     public void menuUtama() {
@@ -56,9 +60,13 @@ public class Console {
         String tmpt_lahir = input.nextLine();
         System.out.print("Jenis Kelamin : ");
         String gender = input.nextLine();
+        System.out.print("Username      : ");
+        String username = input.nextLine();
+        System.out.print("JPassword     : ");
+        String password = input.nextLine();
 
         //Searching unique attribute
-        model.addMahasiswa(nama, tgl_lahir, tmpt_lahir, gender, NIM);
+        model.addMahasiswa(nama, NIM, tgl_lahir, tmpt_lahir, gender, username, password);
         //add to Database
 
         System.out.println("Berhasil memasukan Data!");
@@ -78,9 +86,13 @@ public class Console {
         String tmpt_lahir = input.nextLine();
         System.out.print("Jenis Kelamin : ");
         String gender = input.nextLine();
+        System.out.print("Username      : ");
+        String username = input.nextLine();
+        System.out.print("Password      : ");
+        String password = input.nextLine();
 
         //Searching unique attribute
-        model.addDosen(nama, tgl_lahir, tmpt_lahir, gender, NIP);
+        model.addDosen(nama, NIP, tgl_lahir, tmpt_lahir, gender, username, password);
         //add to Database
 
         System.out.println("Berhasil memasukan Data!");
@@ -106,8 +118,8 @@ public class Console {
     public void hapusMahasiswa() {
         Scanner input = new Scanner(System.in);
 
-        System.out.print("Masukan NIM     : ");
-        String NIM = input.nextLine();
+//        System.out.print("Masukan NIM     : ");
+//        String NIM = input.nextLine();
 
     }
 
@@ -323,7 +335,7 @@ public class Console {
                 + "\n 2. Tipe User Mahasiswa"
                 + "\n 0. Back");
     }
-    
+
     public void pilMenuDosen() {
         System.out.println("Menu Dosen: "
                 + "\n 1. Tambah Kelas"
@@ -332,7 +344,71 @@ public class Console {
                 + "\n 4. Hapus Tugas"
                 + "\n 5. Cari Kelas"
                 + "\n 6. Cari Tugas"
-                + "\n 7. Back");
+                + "\n 0. Logout");
+    }
+    
+    public void tambahKelas(){
+        Scanner input = new Scanner(System.in);
+        
+        System.out.println("Masukan data Kelas: ");
+        System.out.print("Nama Kelas        : "); String nama_mk = input.nextLine();
+        System.out.print("Kode Kelas        : "); String kode_mk = input.nextLine();
+        System.out.print("Jurusan           : "); String jurusan = input.nextLine();
+        
+        //searching unique attribute
+        currentDosen.createKelas(nama_mk, kode_mk, jurusan);
+        //add to database
+        
+        System.out.println("Berhasil menambahkan kelas!");
+        
+    }
+    
+    public void tambahTugas(){
+        Scanner input = new Scanner(System.in);
+        Scanner inputInt = new Scanner(System.in);
+        boolean success = false;
+        
+        if(currentDosen.getDaftarKelas().size() == 0){
+            System.out.println("Belum terdapat kelas!");
+        }else{
+            System.out.println("Masukan Kode Kelas: ");
+            System.out.print("Kode Kelas        : "); String kode_mk = input.nextLine();
+
+            System.out.println("Masukan data tugas: ");
+            System.out.print("Judul Tugas       : "); String judul = input.nextLine();
+            System.out.print("Deskripsi Tugas   : "); String desc = input.nextLine();
+            System.out.print("Jumlah Soal       : "); int jmlh_soal = inputInt.nextInt(); //If error check here!!!
+
+            //searching unique attribute
+            for(Kelas k : currentDosen.getDaftarKelas()){
+                if(k.getKode_kelas().equals(kode_mk)){
+                    k.createTugas(judul, jmlh_soal, desc);
+            //add to database
+                    System.out.println("Berhasil menambahkan kelas!");
+                    success = true;
+                }
+            }
+            if(success == false){
+                System.out.println("Kelas tidak terdaftar!");
+            }
+        }
+    }
+    
+    public void hapusKelas(){
+        
+    }
+    
+    public void hapusTugas(){
+        
+    }
+    
+    public void cariKelas(){
+        System.out.println("Jumlah kelas currentDosen = "+currentDosen.getDaftarKelas().size());
+        
+    }
+    
+    public void cariTugas(){
+        
     }
 
     public void pilMenuMahasiswa() {
@@ -340,9 +416,43 @@ public class Console {
                 + "\n 1. Lihat Daftar Kelas"
                 + "\n 2. Mendaftar ke Kelas"
                 + "\n 3. Lihat Daftar Tugas"
-                + "\n 0. Back");
+                + "\n 0. Logout");
     }
-    
+
+    public Dosen loginDosen() {
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("Masukan username    : ");
+        String username = input.nextLine();
+        System.out.print("Masukan password    : ");
+        String password = input.nextLine();
+
+        for (Dosen d : model.getDaftarDosen()) {
+            if (d.getUsername().equals(username) && d.getPassword().equals(password)) {
+                return d;
+            }
+        }
+        System.out.println("Username/Password salah!");
+        return null;
+    }
+
+    public Mahasiswa loginMahasiswa() {
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("Masukan username    : ");
+        String username = input.nextLine();
+        System.out.print("Masukan password    : ");
+        String password = input.nextLine();
+
+        for (Mahasiswa m : model.getDaftarMahasiswa()) {
+            if (m.getUsername().equals(username) && m.getPassword().equals(password)) {
+                return m;
+            }
+        }
+        System.out.println("Username/Password salah!");
+        return null;
+    }
+
     public void menuUser() {
         boolean back = false;
 
@@ -354,10 +464,22 @@ public class Console {
 
                 switch (opt) {
                     case 1:
-                        pilMenuDosen();
+                        try {
+                            currentDosen = loginDosen();
+                            if (currentDosen != null) {
+                                aksesDosen = true;
+                            }
+                        } catch (Exception e) {
+                            System.out.println("Terjadi kesalahan login!");
+                        }
+                        if (aksesDosen == true) {
+                            menuDosen();
+                        } else {
+                            System.out.println("Login Gagal!\n");
+                        }
                         break;
                     case 2:
-                        pilMenuMahasiswa();
+                        
                         break;
                     case 0:
                         back = true;
@@ -369,6 +491,52 @@ public class Console {
                 System.out.println("Terjadi error");
             }
         } while (back == false);
+
+    }
+
+    public void menuDosen() {
+        boolean logout = false;
+        
+        do{
+            pilMenuDosen();
+            try {
+                Scanner input = new Scanner(System.in);
+                int opt = input.nextInt();
+                
+                switch(opt){
+                    case 1:
+                        tambahKelas();
+                        break;
+                    case 2:
+                        tambahTugas();
+                        break;
+                    case 3:
+                        
+                        break;
+                    case 4:
+                        
+                        break;
+                    case 5:
+                        cariKelas();
+                        break;
+                    case 6:
+                        
+                        break;
+                    case 0:
+                        currentDosen = null;
+                        aksesDosen = false;
+                        logout = true;
+                        break;
+                    default:
+                        System.out.println("Mohon pilih menu yang tersedia.");
+                }
+            } catch (Exception e) {
+                System.out.println("Trejadi error! dammit!");
+            }
+        }while (logout!=true);
+    }
+
+    public void menuMahasiswa() {
 
     }
 }
