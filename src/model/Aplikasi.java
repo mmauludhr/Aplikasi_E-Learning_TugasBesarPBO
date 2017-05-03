@@ -4,7 +4,7 @@
  * M. Widadio Ilham         | 1301154360
  * Afra W. D.               | 1301150432
  */
-package bin;
+package model;
 
 import java.util.ArrayList;
 
@@ -22,6 +22,8 @@ public class Aplikasi {
         daftarMatakuliah = new ArrayList<>();
         daftarDosen = new ArrayList<>();
         daftarMahasiswa = new ArrayList<>();
+        
+        //lakukan load database disini
     }
     
     public void load(ArrayList<MataKuliah> daftarMataKuliah, ArrayList<Dosen> daftarDosen, ArrayList<Mahasiswa> daftarMahasiswa){
@@ -48,12 +50,12 @@ public class Aplikasi {
         daftarMatakuliah.add(new MataKuliah(nama_mk, kode_mk));
     }
 
-    public void addDosen(String nama, String tgl_lahir, String tmpt_lahir, char gender, String NIP) {
-        daftarDosen.add(new Dosen(nama, tgl_lahir, tmpt_lahir, gender, NIP));
+    public void addDosen(String nama, String NIP, String tgl_lahir, String tmpt_lahir, String gender, String username, String password) {
+        daftarDosen.add(new Dosen(nama, NIP, tgl_lahir, tmpt_lahir, gender, username, password));
     }
 
-    public void addMahasiswa(String nama, String tgl_lahir, String tmpt_lahir, char gender, String NIM) {
-        daftarMahasiswa.add(new Mahasiswa(nama, tgl_lahir, tmpt_lahir, gender, NIM));
+    public void addMahasiswa(String nama, String NIM, String tgl_lahir, String tmpt_lahir, String gender, String username, String password) {
+        daftarMahasiswa.add(new Mahasiswa(nama, NIM, tgl_lahir, tmpt_lahir, gender, username, password));
     }
 
     //searching by index
