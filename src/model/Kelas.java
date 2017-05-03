@@ -41,6 +41,7 @@ public class Kelas {
         this.nama_kelas = nama_kelas;
         this.kode_kelas = kode_kelas;
         this.jurusan = jurusan;
+        this.daftar_tugas = new ArrayList<Tugas>();
     }
 
    /* Kelas(String nama_kelas, String kode_kelas) {

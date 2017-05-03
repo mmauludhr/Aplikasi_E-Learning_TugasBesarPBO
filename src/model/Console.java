@@ -356,7 +356,7 @@ public class Console {
         System.out.print("Jurusan           : "); String jurusan = input.nextLine();
         
         //searching unique attribute
-        currentDosen.createKelas(nama_mk, kode_mk, jurusan);
+//        currentDosen.createKelas(nama_mk, kode_mk, jurusan);
         //add to database
         
         System.out.println("Berhasil menambahkan kelas!");

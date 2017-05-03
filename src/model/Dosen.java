@@ -16,7 +16,7 @@ import java.util.List;
 public class Dosen extends Orang implements Akun {
 
     private String NIP;
-    private ArrayList<Kelas> daftar_kelas = new ArrayList<>();
+    private ArrayList<Kelas> daftar_kelas;
     private Kelas kelas;
     private String username;
     private String password;
@@ -39,6 +39,7 @@ public class Dosen extends Orang implements Akun {
         super.setGender(jenis_k);
         this.username = username;
         this.password = password;
+        this.daftar_kelas = new ArrayList<Kelas>();
     }
 
     public String getNIP() {
@@ -66,23 +67,29 @@ public class Dosen extends Orang implements Akun {
             }
         }
     }*/
-    public void createKelas(String nama_kelas, String kode_kelas, String jurusan) {
-        //daftar_kelas.add(new Kelas(nama_kelas, kode_kelas, jurusan));
-        if (isDaftarKelasFull() == false) {
-             kelas = new Kelas(nama_kelas, kode_kelas, jurusan);
-            for (int i = 1; i <= daftar_kelas.size(); i++) {
-               // if (daftar_kelas.get(i) == null ) {
-               if (daftar_kelas.isEmpty()){
-                   daftar_kelas.set(i, kelas);
-                   //daftar_kelas.add(kelas);}
-               }
-               else if (!daftar_kelas.isEmpty()){
-                   daftar_kelas.set(i, kelas);
-                   //daftar_kelas.add(kelas);
-               }
-               else System.out.println("Kelas sudah penuh");
-              }
-        }
+//    public void createKelas(String nama_kelas, String kode_kelas, String jurusan) {
+//        //daftar_kelas.add(new Kelas(nama_kelas, kode_kelas, jurusan));
+//        if (isDaftarKelasFull() == false) {
+//             kelas = new Kelas(nama_kelas, kode_kelas, jurusan);
+//            for (int i = 1; i <= daftar_kelas.size(); i++) {
+//               // if (daftar_kelas.get(i) == null ) {
+//               if (daftar_kelas.isEmpty()){
+//                   daftar_kelas.set(i, kelas);
+//                   //daftar_kelas.add(kelas);}
+//               }
+//               else if (!daftar_kelas.isEmpty()){
+//                   daftar_kelas.set(i, kelas);
+//                   //daftar_kelas.add(kelas);
+//               }
+//               else System.out.println("Kelas sudah penuh");
+//              }
+//        }
+//    }
+    
+    public void createKelas(String nama_kelas, String kode_kelas, String jurusan){
+        kelas = new Kelas(nama_kelas, kode_kelas, jurusan);
+        daftar_kelas.add(kelas);
+        
     }
     
     
