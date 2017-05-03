@@ -64,5 +64,19 @@ public class Mahasiswa extends Orang implements Akun {
     public void setPassword(String password) {
         this.password = password;
     }
+    
+   /* @Override
+    public String toString(){
+        String nama = "Nama Mhs = " + super.getNama();
+        String nim = "NIM = " + this.NIM;
+        String umur = "Umur = " + super.getUmur();
+        String gender = "Gender = " + super.getGender();
+        String tgl_lahir = "Tanggal lahir "+ super.getTglLahir();
+        String tmpt_lahir = "Tempat lahir = " +super.getTmptLahir();
+        String alamat = "Alamat = " + super.getAlamat();
+        
+      
+        return nama + '\n' + nim + '\n' + umur + '\n' + gender + '\n' + tgl_lahir + '\n'+ tmpt_lahir + '\n' +alamat +'\n';        
+    }*/
 
 }

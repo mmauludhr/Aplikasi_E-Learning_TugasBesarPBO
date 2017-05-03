@@ -31,11 +31,21 @@ public class Kelas {
 //        this.jmlh_mahasiswa = 25;
 //    }
     
-    public Kelas(String nama_kelas, String kode_kelas, String jurusan){
+    /*public Kelas(String nama_kelas, String kode_kelas, String jurusan){
+        this.nama_kelas = nama_kelas;
+        this.kode_kelas = kode_kelas;
+        this.jurusan = jurusan;
+    }*/
+
+    public Kelas(String nama_kelas, String kode_kelas, String jurusan) {
         this.nama_kelas = nama_kelas;
         this.kode_kelas = kode_kelas;
         this.jurusan = jurusan;
     }
+
+   /* Kelas(String nama_kelas, String kode_kelas) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }*/
 
     public String getNamaKelas() {
         return nama_kelas;
@@ -117,6 +127,8 @@ public class Kelas {
         tugas = new Tugas(nama_tugas, jmlh_soal, desc);
         daftar_tugas.add(tugas);
     }
+    
+   
 
     public int searchTugas(String nama_tugas) {
         for (int i = 0; i < daftar_tugas.size(); i++) {
