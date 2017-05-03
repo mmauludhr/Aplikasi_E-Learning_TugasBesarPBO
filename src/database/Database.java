@@ -35,7 +35,7 @@ public class Database {
     }
 
     private void connect() {
-        this.address = "jdbc:mysql://localhost:3306/elearning";
+        this.address = "jdbc:mysql://localhost/elearning";
         this.username = "";
         this.password = "";
         
@@ -260,7 +260,58 @@ public class Database {
             e.printStackTrace();
         }
     }
-}
+    
+  //UPDATE CODE DARI SINI
+    public void updateDataDosen(String namaDosen, String namaKelas){
+        //update ini merupakan update data dosen pada table kelas
+        try{
+            Statement s = connection.createStatement();
+            String query = "UPDATE kelas SET dosen='"+ namaDosen +"' WHERE kelas='"+ namaKelas +"'";
+           
+            
+            s.executeUpdate(query);
+            connection.commit();
+            s.close();
+        } catch(SQLException e){
+            System.out.println("Update gagal dilakukan");
+            e.printStackTrace();
+        }
+    }
+    
+    public void updateDataMatakuliah(String namaMk, String namaKelas){
+        //update ini merupakan update data matakuliah didalam table kelas
+        try{
+            Statement s = connection.createStatement();
+            String query = "UPDATE kelas SET matakuliah='"+ namaMk +"' WHERE namakelas='"+ namaKelas +"'";
+            
+           
+            
+            s.executeUpdate(query);
+            connection.commit();
+            s.close();
+        } catch(SQLException e){
+            System.out.println("Update gagal dilakukan");
+            e.printStackTrace();
+        }
+    }
+    
+    
+    public void updateSetDosen(String namaDosen, String namaKelas){
+        try{
+            Statement s = connection.createStatement();
+            String query = "UPDATE kelas SET dosen='"+ namaDosen +"' WHERE namakelas='"+ namaKelas +"'";
+            
+            //System.out.println(query);
+            
+            s.executeUpdate(query);
+            connection.commit();
+            s.close();
+        } catch(SQLException e){
+            System.out.println("Error occured");
+            e.printStackTrace();
+        }
+    }
+}   
     
     
     
