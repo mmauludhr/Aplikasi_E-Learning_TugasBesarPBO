@@ -14,6 +14,7 @@ import java.util.ArrayList;
  */
 public class Kelas {
 
+    private String kode_kelas;
     private String nama_kelas;
     private String jurusan;
     private int jmlh_mahasiswa;
@@ -22,6 +23,7 @@ public class Kelas {
     private Tugas tugas;
     private ArrayList<Mahasiswa> anggota;
     private ArrayList<Tugas> daftar_tugas;
+   
 
     public Kelas(String nama_kelas, String jurusan) {
         this.nama_kelas = nama_kelas;
@@ -41,9 +43,40 @@ public class Kelas {
         this.mata_kuliah = mata_kuliah;
     }
 
+    public MataKuliah getMata_kuliah() {
+        return mata_kuliah;
+    }
+    
+
+    public String getKode_kelas() {
+        return kode_kelas;
+    }
+
+    public void setKode_kelas(String kode_kelas) {
+        this.kode_kelas = kode_kelas;
+    }
+    
     public void setDosenPengajar(Dosen dosen_pengajar) {
         this.dosen_pengajar = dosen_pengajar;
     }
+
+    public String getJurusan() {
+        return jurusan;
+    }
+
+    public void setJurusan(String jurusan) {
+        this.jurusan = jurusan;
+    }
+
+    public Tugas getTugas() {
+        return tugas;
+    }
+
+    public void setTugas(Tugas tugas) {
+        this.tugas = tugas;
+    }
+    
+    
 
     public void addMahasiswa(Mahasiswa mhs) {
         if (isAnggotaFull() == false) {
