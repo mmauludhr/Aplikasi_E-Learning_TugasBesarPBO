@@ -16,13 +16,24 @@ public class Mahasiswa extends Orang implements Akun {
     private String username;
     private String password;
 
-    //Parameter tambahkan username
-    public Mahasiswa(String nama, String tgl_lahir, String tmpt_lahir, String jenis_k, String NIM) {
+    //Tanpa parameter username & password
+//    public Mahasiswa(String nama, String NIM, String tgl_lahir, String tmpt_lahir, String jenis_k) {
+//        super.setNama(nama);
+//        this.NIM = NIM;
+//        super.setTglLahir(tgl_lahir);
+//        super.setTmptLahir(tmpt_lahir);
+//        super.setGender(jenis_k);
+//    }
+    
+    //Dengan parameter username & password
+    public Mahasiswa(String nama, String NIM, String tgl_lahir, String tmpt_lahir, String jenis_k, String username, String password){
         super.setNama(nama);
+        this.NIM = NIM;
         super.setTglLahir(tgl_lahir);
         super.setTmptLahir(tmpt_lahir);
         super.setGender(jenis_k);
-        this.NIM = NIM;
+        this.username = username;
+        this.password = password;
     }
 
     public String getNIM() {

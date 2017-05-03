@@ -21,13 +21,24 @@ public class Dosen extends Orang implements Akun {
     private String username;
     private String password;
 
-    //Parameter tambahkan username
-    public Dosen(String nama, String tgl_lahir, String tmpt_lahir, String jenis_k, String NIP) {
+    //Tanpa parameter username & password
+//    public Dosen(String nama, String NIP, String tgl_lahir, String tmpt_lahir, String jenis_k) {
+//        super.setNama(nama);
+//        this.NIP = NIP;
+//        super.setTglLahir(tgl_lahir);
+//        super.setTmptLahir(tmpt_lahir);
+//        super.setGender(jenis_k);
+//    }
+    
+    //Dengan parameter username & password
+    public Dosen(String nama, String NIP, String tgl_lahir, String tmpt_lahir, String jenis_k, String username, String password){
         super.setNama(nama);
+        this.NIP = NIP;
         super.setTglLahir(tgl_lahir);
         super.setTmptLahir(tmpt_lahir);
         super.setGender(jenis_k);
-        this.NIP = NIP;
+        this.username = username;
+        this.password = password;
     }
 
     public String getNIP() {
@@ -74,6 +85,10 @@ public class Dosen extends Orang implements Akun {
         } else {
             daftar_kelas.remove(index);
         }
+    }
+    
+    public ArrayList<Kelas> getDaftarKelas(){
+        return daftar_kelas;
     }
 
     public boolean isDaftarKelasFull() {
