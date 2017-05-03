@@ -203,6 +203,60 @@ public class Database {
             e.printStackTrace();
         }
     }
+    
+    public void deleteAkun(String username){
+        try{
+            Statement s = connection.createStatement();
+            String query = "DELETE FROM `akun` WHERE username='"+username+"'";
+
+            s.execute(query);
+            connection.commit();
+            s.close();
+        } catch(SQLException e){
+            System.out.println("Data akun gagal dihapus");
+            e.printStackTrace();
+        }
+    }
+    public void deleteKelas(String kode_kls){
+        try{
+            Statement s = connection.createStatement();
+            String query = "DELETE FROM `kelas` WHERE kode_kls='"+kode_kls+"'";
+
+            s.execute(query);
+            connection.commit();
+            s.close();
+        } catch(SQLException e){
+            System.out.println("Data kelas gagal dihapus");
+            e.printStackTrace();
+        }
+    }
+    public void deleteMataKuliah(String kode_mk){
+        try{
+            Statement s = connection.createStatement();
+            String query = "DELETE FROM `matakuliah` WHERE kode_mk='"+kode_mk+"'";
+
+            s.execute(query);
+            connection.commit();
+            s.close();
+        } catch(SQLException e){
+            System.out.println("Data kelas gagal dihapus");
+            e.printStackTrace();
+        }
+    }
+    
+    public void deleteTugas(String kode_tugas){
+        try{
+            Statement s = connection.createStatement();
+            String query = "DELETE FROM `tugas` WHERE kode_tugas='"+kode_tugas+"'";
+
+            s.execute(query);
+            connection.commit();
+            s.close();
+        } catch(SQLException e){
+            System.out.println("Data kelas gagal dihapus");
+            e.printStackTrace();
+        }
+    }
 }
     
     
