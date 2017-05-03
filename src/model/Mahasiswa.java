@@ -17,13 +17,13 @@ public class Mahasiswa extends Orang implements Akun {
     private String password;
 
     //Tanpa parameter username & password
-//    public Mahasiswa(String nama, String NIM, String tgl_lahir, String tmpt_lahir, String jenis_k) {
-//        super.setNama(nama);
-//        this.NIM = NIM;
-//        super.setTglLahir(tgl_lahir);
-//        super.setTmptLahir(tmpt_lahir);
-//        super.setGender(jenis_k);
-//    }
+    public Mahasiswa(String nama, String NIM, String tgl_lahir, String tmpt_lahir, String jenis_k) {
+        super.setNama(nama);
+        this.NIM = NIM;
+        super.setTglLahir(tgl_lahir);
+        super.setTmptLahir(tmpt_lahir);
+        super.setGender(jenis_k);
+    }
     
     //Dengan parameter username & password
     public Mahasiswa(String nama, String NIM, String tgl_lahir, String tmpt_lahir, String jenis_k, String username, String password){
