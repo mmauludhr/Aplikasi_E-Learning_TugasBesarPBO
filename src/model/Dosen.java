@@ -4,7 +4,7 @@
  * M. Widadio Ilham         | 1301154360
  * Afra W. D.               | 1301150432
  */
-package bin;
+package model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,10 +21,12 @@ public class Dosen extends Orang implements Akun {
     private String username;
     private String password;
 
-    public Dosen(String nama, String tgl_lahir, String tmpt_lahir, char gender, String NIP) {
+    //Parameter tambahkan username
+    public Dosen(String nama, String tgl_lahir, String tmpt_lahir, String jenis_k, String NIP) {
         super.setNama(nama);
         super.setTglLahir(tgl_lahir);
         super.setTmptLahir(tmpt_lahir);
+        super.setGender(jenis_k);
         this.NIP = NIP;
     }
 
@@ -83,7 +85,7 @@ public class Dosen extends Orang implements Akun {
 
     @Override
     public String getUsername() {
-    return username;    
+        return username;
     }
 
     @Override

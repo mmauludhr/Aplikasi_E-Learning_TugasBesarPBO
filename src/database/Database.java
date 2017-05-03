@@ -6,8 +6,11 @@
  */
 package database;
 
+import model.Mahasiswa;
+import model.Kelas;
+import model.Dosen;
+import model.MataKuliah;
 import java.sql.Connection;
-import bin.*;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -32,7 +35,7 @@ public class Database {
     }
 
     private void connect() {
-        this.address = "jdbc:mysql://localhost/elearning";
+        this.address = "jdbc:mysql://localhost:3306/elearning";
         this.username = "";
         this.password = "";
         

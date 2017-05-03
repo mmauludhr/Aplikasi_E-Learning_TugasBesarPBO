@@ -4,23 +4,20 @@
  * M. Widadio Ilham	  | 1301154360
  * Afra W. D.	  | 1301150432
  */
-package bin;
+package model;
 
 /**
  *
  * @author Muhammad Maulud H R
  */
 public interface Akun {
-//    private String username;
-//    private String password;
 
     public String getUsername();
 
     public void setUsername(String username);
 
-    public String getPassword() ;
+    public String getPassword();
 
-    public void setPassword(String password) ;
-    
-    
+    public void setPassword(String password);
+
 }

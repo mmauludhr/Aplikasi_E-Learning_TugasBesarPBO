@@ -4,7 +4,7 @@
  * M. Widadio Ilham         | 1301154360
  * Afra W. D.               | 1301150432
  */
-package bin;
+package model;
 
 /**
  *
@@ -12,8 +12,8 @@ package bin;
  */
 public class MataKuliah {
 
-    String nama_mk;
-    String kode_mk;
+    private String nama_mk;
+    private String kode_mk;
 
     public MataKuliah(String nama_mk, String kode_mk) {
         this.kode_mk = kode_mk;

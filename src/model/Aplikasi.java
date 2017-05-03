@@ -4,7 +4,7 @@
  * M. Widadio Ilham         | 1301154360
  * Afra W. D.               | 1301150432
  */
-package bin;
+package model;
 
 import java.util.ArrayList;
 
@@ -48,11 +48,11 @@ public class Aplikasi {
         daftarMatakuliah.add(new MataKuliah(nama_mk, kode_mk));
     }
 
-    public void addDosen(String nama, String tgl_lahir, String tmpt_lahir, char gender, String NIP) {
+    public void addDosen(String nama, String tgl_lahir, String tmpt_lahir, String gender, String NIP) {
         daftarDosen.add(new Dosen(nama, tgl_lahir, tmpt_lahir, gender, NIP));
     }
 
-    public void addMahasiswa(String nama, String tgl_lahir, String tmpt_lahir, char gender, String NIM) {
+    public void addMahasiswa(String nama, String tgl_lahir, String tmpt_lahir, String gender, String NIM) {
         daftarMahasiswa.add(new Mahasiswa(nama, tgl_lahir, tmpt_lahir, gender, NIM));
     }
 
