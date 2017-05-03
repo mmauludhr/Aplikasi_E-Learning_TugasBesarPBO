@@ -13,11 +13,13 @@ import java.util.List;
  *
  * @author M Maulud H R
  */
-public class Dosen extends Orang {
+public class Dosen extends Orang implements Akun {
 
     private String NIP;
     private ArrayList<Kelas> daftar_kelas;
     private Kelas kelas;
+    private String username;
+    private String password;
 
     public Dosen(String nama, String tgl_lahir, String tmpt_lahir, char gender, String NIP) {
         super.setNama(nama);
@@ -77,5 +79,25 @@ public class Dosen extends Orang {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public String getUsername() {
+    return username;    
+    }
+
+    @Override
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
