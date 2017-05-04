@@ -15,6 +15,7 @@ public class Mahasiswa extends Orang implements Akun {
     private String NIM;
     private String username;
     private String password;
+    private String acc_type;
 
     //Tanpa parameter username & password
     public Mahasiswa(String nama, String NIM, String tgl_lahir, String tmpt_lahir, String jenis_k) {
@@ -34,6 +35,13 @@ public class Mahasiswa extends Orang implements Akun {
         super.setGender(jenis_k);
         this.username = username;
         this.password = password;
+       
+    }
+    
+    public Mahasiswa(String username, String password, String acc_type){
+        this.username = username;
+        this.password = password;
+        this.acc_type = acc_type;
     }
 
     public String getNIM() {
@@ -79,4 +87,13 @@ public class Mahasiswa extends Orang implements Akun {
         return nama + '\n' + nim + '\n' + umur + '\n' + gender + '\n' + tgl_lahir + '\n'+ tmpt_lahir + '\n' +alamat +'\n';        
     }*/
 
+    @Override
+    public String getacc_type() {
+        return acc_type;
+    }
+    @Override
+    public void setacc_type(String acc_type) {
+       this.acc_type = acc_type;
+
+}
 }

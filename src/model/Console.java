@@ -16,12 +16,20 @@ import model.Aplikasi;
  */
 public class Console {
 
-    private Aplikasi model = new Aplikasi();
+    Database d;
+    private Aplikasi model;// = new Aplikasi(d);
     private Dosen currentDosen;
     private Mahasiswa currentMahasiswa;
     private boolean aksesDosen = false;
     private boolean aksesMahasiswa = false;
+    
     //Lakukan koneksi dengan database
+    
+    public Console(Database d){
+        this.d = d;
+        model = new Aplikasi(d);
+        
+    }
 
     public void menuUtama() {
         System.out.println("Main Menu: "

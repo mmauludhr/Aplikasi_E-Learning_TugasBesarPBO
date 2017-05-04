@@ -18,16 +18,18 @@ public class Aplikasi {
     private ArrayList<MataKuliah> daftarMatakuliah;
     private ArrayList<Dosen> daftarDosen;
     private ArrayList<Mahasiswa> daftarMahasiswa;
+    private Database d;
 
-    private Database d = new Database();
     
     
-    public Aplikasi(){
+    public Aplikasi(Database d){
         daftarMatakuliah = new ArrayList<>();
         daftarDosen = new ArrayList<>();
         daftarMahasiswa = new ArrayList<>();
+        this.d = d;
         
-        //lakukan load database disini
+        load(d.loadMatakuliah(), d.loadAkunDosen(), d.loadMahasiswa());
+//        this.daftarMahasiswa = d.loadAkunMahasiswa();
     }
     
     public void load(ArrayList<MataKuliah> daftarMatakuliah, ArrayList<Dosen> daftarDosen, ArrayList<Mahasiswa> daftarMahasiswa){
@@ -39,6 +41,7 @@ public class Aplikasi {
     //add by Object
     public void addMataKuliah(MataKuliah mk) {
         daftarMatakuliah.add(mk);
+        
     }
 
     public void addDosen(Dosen d) {

@@ -20,6 +20,7 @@ public class Dosen extends Orang implements Akun {
     private Kelas kelas;
     private String username;
     private String password;
+    private String acc_type;
 
     //Tanpa parameter username & password
     public Dosen(String nama, String NIP, String tgl_lahir, String tmpt_lahir, String jenis_k) {
@@ -40,6 +41,12 @@ public class Dosen extends Orang implements Akun {
         this.username = username;
         this.password = password;
         this.daftar_kelas = new ArrayList<Kelas>();
+    }
+
+    public Dosen(String username, String password, String acc_type) {
+        this.username = username;
+        this.password = password;
+        this.acc_type = acc_type;
     }
 
     public String getNIP() {
@@ -121,4 +128,14 @@ public class Dosen extends Orang implements Akun {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    @Override
+    public String getacc_type() {
+       return acc_type;
+    }
+
+    @Override
+    public void setacc_type(String acc_type) {
+        this.acc_type = acc_type;
+}
 }

@@ -56,7 +56,7 @@ public class Database {
     
     
     
-    public void saveMahasiswa (Mahasiswa m){
+    public void insertMahasiswa (Mahasiswa m){
         try{
         Statement s = connection.createStatement();
         String query = "INSERT INTO `mahasiswa` " + "(`username`, `password`, `nim`, `nama_m`, `gender_m`, `tgl_lahir_m`, `tmpt_lahir_m`, `alamat_m`)"
@@ -72,7 +72,7 @@ public class Database {
     }
     }
     
-    public void saveAkunMahasiswa (Mahasiswa m){
+    public void insertAkunMahasiswa (Mahasiswa m){
         try{
         Statement s = connection.createStatement();
         String query = "INSERT INTO `akun` " + "(`username`, `password`,`acc_type`)"
@@ -87,7 +87,7 @@ public class Database {
     }
     }
     
-    public void saveDosen (Dosen d){
+    public void insertDosen (Dosen d){
         try{
         Statement s = connection.createStatement();
         String query = "INSERT INTO `dosen` " + "(`username`, `password`, `nip`, `Nama_d`, `gender_d`, `tgl_lahir_d`, `Tmpt_lahir_d`, `alamat_d`)"
@@ -103,7 +103,7 @@ public class Database {
     }
     }
     
-     public void saveAkunDosen (Dosen d){
+     public void insertAkunDosen (Dosen d){
         try{
         Statement s = connection.createStatement();
         String query = "INSERT INTO `akun` " + "(`username`, `password`,`acc_type`)"
@@ -117,7 +117,7 @@ public class Database {
             e.printStackTrace();
     }
     }
-    public void saveKelas (Kelas k, Dosen d){
+    public void insertKelas (Kelas k, Dosen d){
         try{
         Statement s = connection.createStatement();
         
@@ -134,7 +134,7 @@ public class Database {
     }
     }
     
-    public void saveMataKuliah (MataKuliah mk){
+    public void insertMataKuliah (MataKuliah mk){
         try{
         Statement s = connection.createStatement();
         String query = "INSERT INTO `MataKuliah` " + "(`nama_mk`, `kode_mk`)"
@@ -149,7 +149,7 @@ public class Database {
     }
     }
     
-    public void saveTugas (Kelas k){
+    public void insertTugas (Kelas k){
         try{
         Statement s = connection.createStatement();
         String query = "INSERT INTO `Tugas` " + "(`nama_tugas`, `jmlh_soal`, `desc`, `kode_kls`, `kode_tugas`)"
@@ -325,27 +325,31 @@ public class Database {
         
         return null;
     }
-    public ArrayList<Kelas> loadKelas(){
+    public ArrayList<Kelas> loadKelas(Dosen d){
         try{
-            ArrayList<Kelas> listkls = new ArrayList();
             
+            ArrayList<Kelas> listkls = new ArrayList<>();
             Statement s = connection.createStatement();
-            String query = "SELECT * FROM kelas";
+            String query = "SELECT * FROM kelas where nip dosen = " + d.getNIP();
             ResultSet r = s.executeQuery(query);
             
             while(r.next()){
-                Kelas kls = new Kelas(r.getString("nama_kelas"), r.getString("kode_kls"), r.getString("jurusan"));
+               Kelas kls = new Kelas(r.getString("nama_kelas"), r.getString("kode_kls"), r.getString("jurusan"));
                 listkls.add(kls);
             }
             
             return listkls;  
         } catch(SQLException e){
-            System.out.println("Error occured");
+            System.out.println("Data kelas gagal diproses");
             e.printStackTrace();
         }
         
+        //
+        
         return null;
     }
+    
+   
     //String nama_kelas, String kode_kelas, String jurusan pada construct nya
     //nama_kelas', 'kode_kls', 'jurusan', 'mata_kuliah', 'tugas', 'kode_mk' pada table di database
     
@@ -370,7 +374,24 @@ public class Database {
         
         return null;
     }
-    /*public ArrayList<Mahasiswa> loadAkunMahasiswa(){
+    
+    /*public ArrayList<Kelompok> loadKel(Lokasi l) {
+        try {
+            Kelompok kel;
+            ArrayList<Kelompok> k = new ArrayList<>();
+            String sql = "select * from kelompok where idLokasi = " + l.getId();
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                kel = new Kelompok(rs.getString("NoKelompok"), rs.getString("Nama_Kelompok"));
+                k.add(kel);
+            }
+            return k;
+        } catch (SQLException ex) {
+            throw new IllegalArgumentException("Gagal" + ex.getMessage());
+        }
+    }*/
+    public ArrayList<Mahasiswa> loadAkunMahasiswa(){
         try{
             ArrayList<Mahasiswa> listamhs = new ArrayList();
             
@@ -379,19 +400,41 @@ public class Database {
             ResultSet r = s.executeQuery(query);
             
             while(r.next()){
-                Mahasiswa accmhs = new Mahasiswa (r.getString("username"), r.getString("password"), r.getString("acc_type")) {};
-                listmhs.add(accmhs);
+                Mahasiswa accmhs = new Mahasiswa(r.getString("username"), r.getString("password"), r.getString("acc_type"));
+                listamhs.add(accmhs);
             }
             
-            return listmhs;
+            return listamhs;
         } catch(SQLException e){
             System.out.println("Error occured");
             e.printStackTrace();
         }
         
         return null;
- */   //}
 }
+    
+    public ArrayList<Dosen> loadAkunDosen(){
+        try{
+            ArrayList<Dosen> listadsn = new ArrayList();
+            
+            Statement s = connection.createStatement();
+            String query = "SELECT * FROM akun";
+            ResultSet r = s.executeQuery(query);
+            
+            while(r.next()){
+                Dosen accdsn = new Dosen (r.getString("username"), r.getString("password"), r.getString("acc_type"));
+                listadsn.add(accdsn);
+            }
+            
+            return listadsn;
+        } catch(SQLException e){
+            System.out.println("Error occured");
+            e.printStackTrace();
+        }
+        
+        return null;
+    }
+ }
     
     
     

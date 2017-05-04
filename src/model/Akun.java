@@ -19,5 +19,9 @@ public interface Akun {
     public String getPassword();
 
     public void setPassword(String password);
+    
+    public String getacc_type();
+    
+    public void setacc_type(String acc_type);
 
 }
