@@ -4,12 +4,12 @@
  * M. Widadio Ilham         | 1301154360
  * Afra W. D.               | 1301150432
  */
-package controller;
+package controllerOld;
 
 import model.Aplikasi;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import view.Authentication;
+import viewOld.Authentication;
 
 /**
  *
