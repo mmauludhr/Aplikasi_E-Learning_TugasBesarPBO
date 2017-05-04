@@ -61,7 +61,8 @@ public class DummyDrive {
 //        System.out.println(d.loadDosen());
 //        System.out.println(d.loadMatakuliah());
 //        System.out.println(d.loadKelas());
-        
+          System.out.println(d.loadAkunMahasiswa());
+          System.out.println(d.loadAkunDosen());
  
        
     }

@@ -6,6 +6,7 @@
  */
 package driver;
 
+import database.Database;
 import java.util.Scanner;
 import model.Console;
 
@@ -17,7 +18,10 @@ public class DriverConsole {
 
     public static void main(String[] args) {
         boolean exit = false;
-        Console csl = new Console();
+        Database d = new Database();
+        Console csl = new Console(d);
+        
+        
         
         
 

@@ -18,16 +18,18 @@ public class Aplikasi {
     private ArrayList<MataKuliah> daftarMatakuliah;
     private ArrayList<Dosen> daftarDosen;
     private ArrayList<Mahasiswa> daftarMahasiswa;
+    private Database db;
 
-    private Database d = new Database();
     
     
-    public Aplikasi(){
+    public Aplikasi(Database db){
         daftarMatakuliah = new ArrayList<>();
         daftarDosen = new ArrayList<>();
         daftarMahasiswa = new ArrayList<>();
+        this.db = db;
         
-        //lakukan load database disini
+        load(db.loadMatakuliah(), db.loadAkunDosen(), db.loadMahasiswa());
+//        this.daftarMahasiswa = d.loadAkunMahasiswa();
     }
     
     public void load(ArrayList<MataKuliah> daftarMatakuliah, ArrayList<Dosen> daftarDosen, ArrayList<Mahasiswa> daftarMahasiswa){
@@ -39,19 +41,24 @@ public class Aplikasi {
     //add by Object
     public void addMataKuliah(MataKuliah mk) {
         daftarMatakuliah.add(mk);
+        db.insertMataKuliah(mk);
+        
     }
 
     public void addDosen(Dosen d) {
         daftarDosen.add(d);
+        db.insertDosen(d);
     }
 
     public void addMahasiswa(Mahasiswa m) {
         daftarMahasiswa.add(m);
+        db.insertMahasiswa(m);
     }
 
     //add by Constructor
     public void addMataKuliah(String nama_mk, String kode_mk) {
         daftarMatakuliah.add(new MataKuliah(nama_mk, kode_mk));
+        
     }
 
     public void addDosen(String nama, String NIP, String tgl_lahir, String tmpt_lahir, String gender, String username, String password) {
@@ -206,6 +213,8 @@ public class Aplikasi {
     //delete Object by Index
     public void deleteMataKuliah(int index) {
         daftarMatakuliah.remove(index);
+       
+        
     }
 
     public void deleteDosen(int index) {
