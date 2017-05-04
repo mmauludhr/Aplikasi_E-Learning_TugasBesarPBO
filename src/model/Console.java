@@ -16,7 +16,7 @@ import model.Aplikasi;
  */
 public class Console {
 
-    Database d;
+    Database db;
     private Aplikasi model;// = new Aplikasi(d);
     private Dosen currentDosen;
     private Mahasiswa currentMahasiswa;
@@ -25,9 +25,9 @@ public class Console {
     
     //Lakukan koneksi dengan database
     
-    public Console(Database d){
-        this.d = d;
-        model = new Aplikasi(d);
+    public Console(Database db){
+        this.db = db;
+        model = new Aplikasi(db);
         
     }
 
@@ -159,6 +159,7 @@ public class Console {
 
         if (model.isNIMMahasiswaExist(NIM) == true) {
             model.getDaftarMahasiswa().remove(model.getMahasiswa(NIM));
+            db.deleteMahasiswa(NIM);
             System.out.println("Berhasil menghapus data mahasiswa");
         } else {
             System.out.println("NIM tidak terdaftar!");
@@ -173,6 +174,7 @@ public class Console {
 
         if (model.isNIPDosenExist(NIP) == true) {
             model.getDaftarDosen().remove(model.getDosen(NIP));
+            db.deleteDosen(NIP);
             System.out.println("Berhasil manghapus dosen");
         } else {
             System.out.println("NIP tidak terdaftar");
@@ -187,6 +189,7 @@ public class Console {
 
         if (model.isKodeMKExist(kode_mk)) {
             model.getDaftarMataKuliah().remove(model.getMataKuliah(kode_mk));
+            db.deleteMataKuliah(kode_mk);
         } else {
             System.out.println("Kode matakuliah tidak terdaftar!");
         }
