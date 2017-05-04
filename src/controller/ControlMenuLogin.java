@@ -11,6 +11,8 @@ import java.awt.event.MouseAdapter;
 import view.MenuLogin;
 import model.Aplikasi;
 import database.Database;
+import java.awt.event.MouseEvent;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -40,8 +42,23 @@ public class ControlMenuLogin extends MouseAdapter implements ActionListener{
     }
     
     @Override
-    public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void actionPerformed(ActionEvent ae) {
+        Object click = ae.getSource();
+        
+        if(click.equals(view.getAdmin())){
+            view.dispose();
+            
+            try {
+                view.dispose();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(view, "Error occured, restart the program");
+            }
+        }
+    }
+    
+    @Override
+    public void mouseClicked(MouseEvent me){
+        
     }
     
 }
