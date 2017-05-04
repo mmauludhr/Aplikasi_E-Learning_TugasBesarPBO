@@ -16,6 +16,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import model.Akun;
+import model.Tugas;
 /**
  *
  * @author Muhammad Maulud H R
@@ -35,9 +37,9 @@ public class Database {
         this.password = password;
     }
 
-    private void connect() {
-        this.address = "jdbc:mysql://localhost:3306/elearning";
-        this.username = "";
+    void connect() {
+        this.address = "jdbc:mysql://localhost/elearning";
+        this.username = "root";
         this.password = "";
         
         
@@ -52,31 +54,14 @@ public class Database {
         }
     }
     
-    /**public void saveMahasiswa(Mahasiswa m){       
-        try{
-            Statement s = connection.createStatement();
-            String query = "INSERT INTO `mahasiswa` "
-                    + "(`id`, `nama`, `umur`, `nim`, `fakultas`, `semester`, `sks`) "
-                    + "VALUES (NULL, '"+ m.getNama()+"', '"+m.getUmur()+"', '"+m.getNim()+"',"
-                    + " '"+m.getFakultas()+"', '"+m.getSemester()+"', '"+m.getSks()+"');";
-            
-            //System.out.println(query);
-            
-            s.execute(query);
-            connection.commit();
-            s.close();           
-        } catch(SQLException e){
-            System.out.println("Error occured");
-            e.printStackTrace();
-        }
-    }*/
+    
     
     public void saveMahasiswa (Mahasiswa m){
         try{
         Statement s = connection.createStatement();
-        String query = "INSERT INTO 'mahasiswa' " + "('username', 'password', 'nim', 'Nama_m', 'gender_m', 'tgl_lahir_m', 'tmpt_lahir_m', 'alamat_m')"
-                + "VALUES('"+m.getUsername()+"','" + m.getPassword()
-                +"','"+m.getNIM()+"','"+m.getNama()+"','"+m.getGender()+"','"+m.getTglLahir()+"','"+m.getTmptLahir()+"','"+m.getAlamat()+"')";
+        String query = "INSERT INTO `mahasiswa` " + "(`username`, `password`, `nim`, `nama_m`, `gender_m`, `tgl_lahir_m`, `tmpt_lahir_m`, `alamat_m`)"
+                + "VALUES('"+m.getUsername()+"','" + m.getPassword()+
+                "','"+m.getNIM()+"','"+m.getNama()+"','"+m.getGender()+"','"+m.getTglLahir()+"','"+m.getTmptLahir()+"','"+m.getAlamat()+"')";
         s.execute(query);
         connection.commit();
         s.close();
@@ -90,8 +75,8 @@ public class Database {
     public void saveAkunMahasiswa (Mahasiswa m){
         try{
         Statement s = connection.createStatement();
-        String query = "INSERT INTO 'akun' " + "('username', 'password','acc_type')"
-                + "VALUES('"+m.getUsername()+"','" + m.getPassword() +"','" + "Mahasiswa)";
+        String query = "INSERT INTO `akun` " + "(`username`, `password`,`acc_type`)"
+                + "VALUES('"+m.getUsername()+"','" + m.getPassword() +"','" + "Mahasiswa')";
         s.execute(query);
         connection.commit();
         s.close();
@@ -105,7 +90,7 @@ public class Database {
     public void saveDosen (Dosen d){
         try{
         Statement s = connection.createStatement();
-        String query = "INSERT INTO 'dosen' " + "('username', 'password', 'nip', 'Nama_d', 'gender_d', 'tgl_lahir_d', 'Tmpt_lahir_d', 'alamat_d')"
+        String query = "INSERT INTO `dosen` " + "(`username`, `password`, `nip`, `Nama_d`, `gender_d`, `tgl_lahir_d`, `Tmpt_lahir_d`, `alamat_d`)"
                 + "VALUES('"+d.getUsername()+"','" + d.getPassword()
                 +"','"+d.getNIP()+"','"+d.getNama()+"','"+d.getGender()+"','"+d.getTglLahir()+"','"+d.getTmptLahir()+"','"+d.getAlamat()+"')";
         s.execute(query);
@@ -121,7 +106,7 @@ public class Database {
      public void saveAkunDosen (Dosen d){
         try{
         Statement s = connection.createStatement();
-        String query = "INSERT INTO 'akun' " + "('username', 'password','acc_type')"
+        String query = "INSERT INTO `akun` " + "(`username`, `password`,`acc_type`)"
                 + "VALUES('"+d.getUsername()+"','" + d.getPassword() +"','" + "Dosen"+"')";
         s.execute(query);
         connection.commit();
@@ -132,12 +117,13 @@ public class Database {
             e.printStackTrace();
     }
     }
-    public void saveKelas (Kelas k){
+    public void saveKelas (Kelas k, Dosen d){
         try{
         Statement s = connection.createStatement();
-        String query = "INSERT INTO 'kelas' " + "('nama_kelas', 'kode_kls', 'jurusan', 'mata_kuliah', 'tugas', 'kode_mk')"
-                + "VALUES('"+k.getNamaKelas()+",'"+k.getKode_kelas()+"','"+k.getJurusan()+"','"
-                +k.getMata_kuliah().getNamaMK()+"','"+k.getTugas().getNamaTugas()+",'"+k.getMata_kuliah().getKodeMK()+"')";
+        
+        String query = "INSERT INTO `kelas` " + "(`nama_kelas`, `kode_kls`, `jurusan`,`nip`)"
+                + "VALUES('"+k.getNamaKelas()+"','"+k.getKode_kelas()+"','"+k.getJurusan()+"','"+d.getNIP()+
+                /*"','"+",'"+k.getMata_kuliah().getKodeMK()+*/"')";
         s.execute(query);
         connection.commit();
         s.close();
@@ -151,7 +137,7 @@ public class Database {
     public void saveMataKuliah (MataKuliah mk){
         try{
         Statement s = connection.createStatement();
-        String query = "INSERT INTO 'MataKuliah' " + "('nama_mk', 'kode_mk')"
+        String query = "INSERT INTO `MataKuliah` " + "(`nama_mk`, `kode_mk`)"
                 + "VALUES('"+mk.getNamaMK()+"','"+mk.getKodeMK()+"')";
         s.execute(query);
         connection.commit();
@@ -166,7 +152,7 @@ public class Database {
     public void saveTugas (Kelas k){
         try{
         Statement s = connection.createStatement();
-        String query = "INSERT INTO 'Tugas' " + "('nama_tugas', 'jmlh_soal', 'desc', 'kode_kls', 'kode_tugas')"
+        String query = "INSERT INTO `Tugas` " + "(`nama_tugas`, `jmlh_soal`, `desc`, `kode_kls`, `kode_tugas`)"
                 + "VALUES('"+k.getTugas().getNamaTugas()+","
                 +k.getTugas().getJmlhSoal()+","+k.getTugas().getDesc()+","+k.getKode_kelas()+","+k.getTugas().getKode_tugas()+"')";
                 
@@ -362,6 +348,49 @@ public class Database {
     }
     //String nama_kelas, String kode_kelas, String jurusan pada construct nya
     //nama_kelas', 'kode_kls', 'jurusan', 'mata_kuliah', 'tugas', 'kode_mk' pada table di database
+    
+    public ArrayList<Tugas> loadTugas(){
+        try{
+            ArrayList<Tugas> listtgs = new ArrayList();
+            
+            Statement s = connection.createStatement();
+            String query = "SELECT * FROM tugas";
+            ResultSet r = s.executeQuery(query);
+            
+            while(r.next()){
+                Tugas tgs = new Tugas(r.getString("nama_kelas"), r.getInt("jmlh_soal"), r.getString("desc"));
+                listtgs.add(tgs);
+            }
+            //String nama_tugas, int jmlh_soal, String desc
+            return listtgs;  
+        } catch(SQLException e){
+            System.out.println("Error occured");
+            e.printStackTrace();
+        }
+        
+        return null;
+    }
+    /*public ArrayList<Mahasiswa> loadAkunMahasiswa(){
+        try{
+            ArrayList<Mahasiswa> listamhs = new ArrayList();
+            
+            Statement s = connection.createStatement();
+            String query = "SELECT * FROM akun";
+            ResultSet r = s.executeQuery(query);
+            
+            while(r.next()){
+                Mahasiswa accmhs = new Mahasiswa (r.getString("username"), r.getString("password"), r.getString("acc_type")) {};
+                listmhs.add(accmhs);
+            }
+            
+            return listmhs;
+        } catch(SQLException e){
+            System.out.println("Error occured");
+            e.printStackTrace();
+        }
+        
+        return null;
+ */   //}
 }
     
     
