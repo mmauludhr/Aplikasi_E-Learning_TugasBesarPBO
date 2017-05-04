@@ -70,6 +70,10 @@ public class Kelas {
     public Tugas getTugas() {
         return tugas;
     }
+    
+    public Tugas getTugas(int index){
+        return daftar_tugas.get(index);
+    }
 
     public void setTugas(Tugas tugas) {
         this.tugas = tugas;
@@ -116,6 +120,15 @@ public class Kelas {
             }
         }
         return -1;
+    }
+    
+    public boolean isTugasExist(String judul_tugas){
+        for(Tugas t : daftar_tugas){
+            if(t.getNamaTugas().equals(judul_tugas)){
+                return true;
+            }
+        }
+        return false;
     }
     
     public ArrayList<Tugas> getDaftarTugas(){

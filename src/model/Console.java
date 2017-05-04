@@ -379,6 +379,8 @@ public class Console {
                 + "\n 4. Hapus Tugas"
                 + "\n 5. Cari Kelas"
                 + "\n 6. Cari Tugas"
+                + "\n 7. Lihaat Semua Kelas"
+                + "\n 8. Lihat Semua Tugas"
                 + "\n 0. Logout");
     }
 
@@ -423,15 +425,20 @@ public class Console {
                     System.out.print("Deskripsi Tugas   : ");
                     String desc = input.nextLine();
                     System.out.print("Jumlah Soal       : ");
-                    int jmlh_soal = inputInt.nextInt();
-                    k.createTugas(judul, jmlh_soal, desc);
+//                    do{
+                        try {
+                            int jmlh_soal = inputInt.nextInt();
+                            k.createTugas(judul, jmlh_soal, desc);
+                            System.out.println("Berhasil menambahkan tugas!");
+                            success = true;
+                        } catch (Exception e) {
+                            System.out.println("Masukan angka!");
+                        }
                     //add to database
-                    System.out.println("Berhasil menambahkan tugas!");
-                    success = true;
                 }
             }
             if (success == false) {
-                System.out.println("Kelas tidak terdaftar!");
+                System.out.println("Kelas sudah terdaftar!");
             }
         }
     }
@@ -439,7 +446,7 @@ public class Console {
     public void hapusKelas() {
         Scanner input = new Scanner(System.in);
 
-        System.out.print("Masukan kode kelas  : ");
+        System.out.print("\nMasukan kode kelas  : ");
         String kode_kelas = input.nextLine();
         if (currentDosen.isKodeKelasExist(kode_kelas) == true) {
             currentDosen.getDaftarKelas().remove(currentDosen.searchKelas(kode_kelas));
@@ -453,32 +460,49 @@ public class Console {
     public void hapusTugas() {
         Scanner input = new Scanner(System.in);
 
-        System.out.print("Masukan kode kelas  : ");
+        System.out.print("\nMasukan kode kelas  : ");
         String kode_kelas = input.nextLine();
         if (currentDosen.isKodeKelasExist(kode_kelas) == true) {
             System.out.print("Masukan judul tugas : ");
             String judul_tugas = input.nextLine();
 
-            currentDosen.getDaftarKelas().get(currentDosen.searchKelas(kode_kelas)).getDaftarTugas()
-                    .remove(currentDosen.getDaftarKelas().get(currentDosen.searchKelas(kode_kelas)).searchTugas(judul_tugas));
+            if (currentDosen.getDaftarKelas().get(currentDosen.searchKelas(kode_kelas)).isTugasExist(judul_tugas) == true) {
+                currentDosen.getDaftarKelas().get(currentDosen.searchKelas(kode_kelas))
+                        .getDaftarTugas().remove(currentDosen.getDaftarKelas().get(currentDosen.searchKelas(kode_kelas)).searchTugas(judul_tugas));
+                System.out.println("Berhasil menghapus tugas!");
+            } else {
+                System.out.println("Tugas tidak terdaftar!");
+            }
         }
     }
 
     public void cariKelas() {
         Scanner input = new Scanner(System.in);
 
-        System.out.print("Masukan kode kelas  : "); String kode_kelas = input.nextLine();
-        if(currentDosen.isKodeKelasExist(kode_kelas)==true){
-            
+        System.out.print("\nMasukan kode kelas  : ");
+        String kode_kelas = input.nextLine();
+        if (currentDosen.isKodeKelasExist(kode_kelas) == true) {
+            System.out.println("Nama kelas      : " + currentDosen.getDaftarKelas().get(currentDosen.searchKelas(kode_kelas)) + "\n");
+        } else {
+            System.out.println("Kode kelas tidak terdaftar!");
         }
     }
 
     public void cariTugas() {
         Scanner input = new Scanner(System.in);
 
-        System.out.print("Masukan kode kelas  : "); String kode_kelas = input.nextLine();
-        if(currentDosen.isKodeKelasExist(kode_kelas)==true){
-            
+        System.out.print("Masukan kode kelas  : ");
+        String kode_kelas = input.nextLine();
+        if (currentDosen.isKodeKelasExist(kode_kelas) == true) {
+            System.out.print("Masukan judul tugas : ");
+            String judul_tugas = input.nextLine();
+
+            if(currentDosen.getDaftarKelas().get(currentDosen.searchKelas(kode_kelas)).isTugasExist(judul_tugas)==true){
+                System.out.println("Judul tugas     : "+currentDosen.getDaftarKelas().get(currentDosen.searchKelas(kode_kelas))
+                        .getTugas(currentDosen.getDaftarKelas().get(currentDosen.searchKelas(kode_kelas)).searchTugas(judul_tugas)).getNamaTugas());
+            } else {
+                System.out.println("Judul tugas tidak terdaftar!");
+            }
         }
     }
 
@@ -488,6 +512,32 @@ public class Console {
                 + "\n 2. Mendaftar ke Kelas"
                 + "\n 3. Lihat Daftar Tugas"
                 + "\n 0. Logout");
+    }
+    
+    public void lihatKelas(){
+        Scanner input = new Scanner(System.in);
+        for(Dosen d : model.getDaftarDosen()){
+            System.out.println("----------\nDosen: "+d.getNama());
+            for(Kelas k : d.getDaftarKelas()){
+                System.out.println("Nama Kelas      : "+k.getNamaKelas());
+                System.out.println("Kode Kelas      : "+k.getKode_kelas()+"\n");
+            }
+        }
+    }
+    
+    public void lihatTugas(){
+        Scanner input = new Scanner(System.in);
+        
+        for(Dosen d : model.getDaftarDosen()){
+            System.out.println("----------\nDosen: "+d.getNama());
+            for(Kelas k : d.getDaftarKelas()){
+                System.out.println("Kode Kelas: "+k.getKode_kelas());
+                for(Tugas t : k.getDaftarTugas()){
+                    System.out.println("    Judul Tugas     : "+t.getNamaTugas());
+                    System.out.println("    Deskripsi Tugas : "+t.getDesc()+"\n");
+                }
+            }
+        }
     }
 
     public Dosen loginDosen() {
@@ -550,7 +600,19 @@ public class Console {
                         }
                         break;
                     case 2:
-
+                        try {
+                            currentMahasiswa = loginMahasiswa();
+                            if (currentMahasiswa != null) {
+                                aksesMahasiswa = true;
+                            }
+                        } catch (Exception e) {
+                            System.out.println("Terjadi kesalahan login!");
+                        }
+                        if (aksesMahasiswa == true) {
+                            menuMahasiswa();
+                        } else {
+                            System.out.println("Login Gagal!\n");
+                        }
                         break;
                     case 0:
                         back = true;
@@ -582,16 +644,22 @@ public class Console {
                         tambahTugas();
                         break;
                     case 3:
-
+                        hapusKelas();
                         break;
                     case 4:
-
+                        hapusTugas();
                         break;
                     case 5:
                         cariKelas();
                         break;
                     case 6:
-
+                        cariTugas();
+                        break;
+                    case 7 :
+                        lihatKelas();
+                        break;
+                    case 8:
+                        lihatTugas();
                         break;
                     case 0:
                         currentDosen = null;
@@ -602,12 +670,57 @@ public class Console {
                         System.out.println("Mohon pilih menu yang tersedia.");
                 }
             } catch (Exception e) {
-                System.out.println("Trejadi error! dammit!");
+                System.out.println("Terjadi error di 'menuDosen'");
             }
         } while (logout != true);
     }
 
     public void menuMahasiswa() {
+        boolean logout = false;
 
+        do {
+            pilMenuMahasiswa();
+            try {
+                Scanner input = new Scanner(System.in);
+                int opt = input.nextInt();
+
+                switch (opt) {
+                    case 1:
+                        lihatKelas();
+                        break;
+                    case 2:
+                        
+                        break;
+                    case 3:
+                        
+                        break;
+                    case 4:
+                        
+                        break;
+                    case 5:
+                        
+                        break;
+                    case 6:
+                        
+                        break;
+                    case 7 :
+                        
+                        
+                        break;
+                    case 8:
+                        
+                        break;
+                    case 0:
+                        currentMahasiswa = null;
+                        aksesMahasiswa = false;
+                        logout = true;
+                        break;
+                    default:
+                        System.out.println("Mohon pilih menu yang tersedia.");
+                }
+            } catch (Exception e) {
+                System.out.println("Terjadi error di 'menuMahasiswa'");
+            }
+        } while (logout != true);
     }
 }
