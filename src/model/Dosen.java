@@ -16,22 +16,22 @@ import java.util.List;
 public class Dosen extends Orang implements Akun {
 
     private String NIP;
-    private ArrayList<Kelas> daftar_kelas = new ArrayList<>();
+    private ArrayList<Kelas> daftar_kelas;
     private Kelas kelas;
     private String username;
     private String password;
 
     //Tanpa parameter username & password
-//    public Dosen(String nama, String NIP, String tgl_lahir, String tmpt_lahir, String jenis_k) {
-//        super.setNama(nama);
-//        this.NIP = NIP;
-//        super.setTglLahir(tgl_lahir);
-//        super.setTmptLahir(tmpt_lahir);
-//        super.setGender(jenis_k);
-//    }
-    
+    public Dosen(String nama, String NIP, String tgl_lahir, String tmpt_lahir, String jenis_k) {
+        super.setNama(nama);
+        this.NIP = NIP;
+        super.setTglLahir(tgl_lahir);
+        super.setTmptLahir(tmpt_lahir);
+        super.setGender(jenis_k);
+    }
+
     //Dengan parameter username & password
-    public Dosen(String nama, String NIP, String tgl_lahir, String tmpt_lahir, String jenis_k, String username, String password){
+    public Dosen(String nama, String NIP, String tgl_lahir, String tmpt_lahir, String jenis_k, String username, String password) {
         super.setNama(nama);
         this.NIP = NIP;
         super.setTglLahir(tgl_lahir);
@@ -39,6 +39,7 @@ public class Dosen extends Orang implements Akun {
         super.setGender(jenis_k);
         this.username = username;
         this.password = password;
+        this.daftar_kelas = new ArrayList<Kelas>();
     }
 
     public String getNIP() {
@@ -50,42 +51,10 @@ public class Dosen extends Orang implements Akun {
         return "Dosen";
     }
 
-  /*  public void createKelas(String nama_kelas, String kode_kelas, String jurusan) {
-        //daftar_kelas.add(new Kelas(nama_kelas, kode_kelas, jurusan));
-        if (isDaftarKelasFull() == false) {
-             kelas = new Kelas(nama_kelas, kode_kelas, jurusan);
-            for (int i = 0; i <= daftar_kelas.size(); i++) {
-                if (daftar_kelas.get(i) == null ) {
-                    daftar_kelas.set(i, kelas);
-                    daftar_kelas.add(kelas);}
-                else {
-                    daftar_kelas.add(kelas);
-                }
-                
-                
-            }
-        }
-    }*/
     public void createKelas(String nama_kelas, String kode_kelas, String jurusan) {
-        //daftar_kelas.add(new Kelas(nama_kelas, kode_kelas, jurusan));
-        if (isDaftarKelasFull() == false) {
-             kelas = new Kelas(nama_kelas, kode_kelas, jurusan);
-            for (int i = 1; i <= daftar_kelas.size(); i++) {
-               // if (daftar_kelas.get(i) == null ) {
-               if (daftar_kelas.isEmpty()){
-                   daftar_kelas.set(i, kelas);
-                   //daftar_kelas.add(kelas);}
-               }
-               else if (!daftar_kelas.isEmpty()){
-                   daftar_kelas.set(i, kelas);
-                   //daftar_kelas.add(kelas);
-               }
-               else System.out.println("Kelas sudah penuh");
-              }
-        }
+        kelas = new Kelas(nama_kelas, kode_kelas, jurusan);
+        daftar_kelas.add(kelas);
     }
-    
-    
 
     public Kelas getKelas(int index) {
         if (index == -1) {
@@ -96,9 +65,18 @@ public class Dosen extends Orang implements Akun {
         return null;
     }
 
-    public int searchKelas(String nama_kelas) {
+    public boolean isKodeKelasExist(String kode_kelas){
+        for(Kelas k : daftar_kelas){
+            if(k.getKode_kelas().equals(kode_kelas)){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public int searchKelas(String kode_kelas) {
         for (int i = 0; i <= daftar_kelas.size(); i++) {
-            if (daftar_kelas.get(i).getNamaKelas() == nama_kelas) {
+            if (daftar_kelas.get(i).getKode_kelas()== kode_kelas) {
                 return i;
             }
         }
@@ -112,8 +90,8 @@ public class Dosen extends Orang implements Akun {
             daftar_kelas.remove(index);
         }
     }
-    
-    public ArrayList<Kelas> getDaftarKelas(){
+
+    public ArrayList<Kelas> getDaftarKelas() {
         return daftar_kelas;
     }
 

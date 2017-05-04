@@ -26,7 +26,7 @@ public class Aplikasi {
         //lakukan load database disini
     }
     
-    public void load(ArrayList<MataKuliah> daftarMataKuliah, ArrayList<Dosen> daftarDosen, ArrayList<Mahasiswa> daftarMahasiswa){
+    public void load(ArrayList<MataKuliah> daftarMatakuliah, ArrayList<Dosen> daftarDosen, ArrayList<Mahasiswa> daftarMahasiswa){
         this.daftarMatakuliah = daftarMatakuliah;
         this.daftarDosen = daftarDosen;
         this.daftarMahasiswa = daftarMahasiswa;
@@ -58,7 +58,7 @@ public class Aplikasi {
         daftarMahasiswa.add(new Mahasiswa(nama, NIM, tgl_lahir, tmpt_lahir, gender, username, password));
     }
 
-    //searching by index
+    //searching return index
     public int searchDosen(String NIP) {
         for (int i = 0; i < daftarDosen.size(); i++) {
             if (daftarDosen.get(i).getNIP().equals(NIP)) {
@@ -85,7 +85,69 @@ public class Aplikasi {
         }
         return -1;
     }
+    
+    //searching unique username
+    public boolean isUserMahasiswaExist(String username){
+        for(Mahasiswa m : daftarMahasiswa){
+            if(m.getUsername().equals(username)){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public boolean isUserDosenExist(String username){
+        for(Dosen d : daftarDosen){
+            if(d.getUsername().equals(username)){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    //searching unique NIM for Mahasiswa
+    public boolean isNIMMahasiswaExist(String NIM){
+        for(Mahasiswa m : daftarMahasiswa){
+            if(m.getNIM().equals(NIM)){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    //searching unique NIP for Dosen
+    public boolean isNIPDosenExist(String NIP){
+        for(Dosen d : daftarDosen){
+            if(d.getNIP().equals(NIP)){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    //searching unique kode_mk for Matakuliah
+    public boolean isKodeMKExist(String kode_mk){
+        for(MataKuliah mk : daftarMatakuliah){
+            if(mk.getKodeMK().equals(kode_mk)){
+                return true;
+            }
+        }
+        return false;
+    }
 
+    //getter Object by index
+    public MataKuliah getMatakuliah(int index){
+        return daftarMatakuliah.get(index);
+    }
+    
+    public Dosen getDosen(int index){
+        return daftarDosen.get(index);
+    }
+    
+    public Mahasiswa getMahasiswa(int index){
+        return daftarMahasiswa.get(index);
+    }
+    
     //getter Object by parameter
     public MataKuliah getMataKuliah(String kode_mk) {
         for (int i = 0; i < daftarMatakuliah.size(); i++) {

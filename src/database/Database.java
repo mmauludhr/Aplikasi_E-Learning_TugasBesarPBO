@@ -36,7 +36,7 @@ public class Database {
     }
 
     private void connect() {
-        this.address = "jdbc:mysql://localhost/elearning";
+        this.address = "jdbc:mysql://localhost:3306/elearning";
         this.username = "";
         this.password = "";
         

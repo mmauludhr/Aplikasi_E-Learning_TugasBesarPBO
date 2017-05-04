@@ -23,29 +23,13 @@ public class Kelas {
     private Tugas tugas;
     private ArrayList<Mahasiswa> anggota;
     private ArrayList<Tugas> daftar_tugas;
-   
-
-//    public Kelas(String nama_kelas, String jurusan) {
-//        this.nama_kelas = nama_kelas;
-//        this.jurusan = jurusan;
-//        this.jmlh_mahasiswa = 25;
-//    }
-    
-    /*public Kelas(String nama_kelas, String kode_kelas, String jurusan){
-        this.nama_kelas = nama_kelas;
-        this.kode_kelas = kode_kelas;
-        this.jurusan = jurusan;
-    }*/
 
     public Kelas(String nama_kelas, String kode_kelas, String jurusan) {
         this.nama_kelas = nama_kelas;
         this.kode_kelas = kode_kelas;
         this.jurusan = jurusan;
+        this.daftar_tugas = new ArrayList<Tugas>();
     }
-
-   /* Kelas(String nama_kelas, String kode_kelas) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }*/
 
     public String getNamaKelas() {
         return nama_kelas;
@@ -62,7 +46,6 @@ public class Kelas {
     public MataKuliah getMata_kuliah() {
         return mata_kuliah;
     }
-    
 
     public String getKode_kelas() {
         return kode_kelas;
@@ -71,7 +54,7 @@ public class Kelas {
     public void setKode_kelas(String kode_kelas) {
         this.kode_kelas = kode_kelas;
     }
-    
+
     public void setDosenPengajar(Dosen dosen_pengajar) {
         this.dosen_pengajar = dosen_pengajar;
     }
@@ -87,12 +70,14 @@ public class Kelas {
     public Tugas getTugas() {
         return tugas;
     }
+    
+    public Tugas getTugas(int index){
+        return daftar_tugas.get(index);
+    }
 
     public void setTugas(Tugas tugas) {
         this.tugas = tugas;
     }
-    
-    
 
     public void addMahasiswa(Mahasiswa mhs) {
         if (isAnggotaFull() == false) {
@@ -127,8 +112,6 @@ public class Kelas {
         tugas = new Tugas(nama_tugas, jmlh_soal, desc);
         daftar_tugas.add(tugas);
     }
-    
-   
 
     public int searchTugas(String nama_tugas) {
         for (int i = 0; i < daftar_tugas.size(); i++) {
@@ -138,6 +121,23 @@ public class Kelas {
         }
         return -1;
     }
+    
+    public boolean isTugasExist(String judul_tugas){
+        for(Tugas t : daftar_tugas){
+            if(t.getNamaTugas().equals(judul_tugas)){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public ArrayList<Tugas> getDaftarTugas(){
+        return daftar_tugas;
+    }
+    
+//    public Tugas getTugas(){
+//        return null;
+//    }
 
     public void deleteTugas(int index) {
         if (index == -1) {
