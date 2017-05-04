@@ -81,11 +81,7 @@ public class Kelas {
 
     public void addMahasiswa(Mahasiswa mhs) {
         if (isAnggotaFull() == false) {
-            for (int i = 0; i <= anggota.size(); i++) {
-                if (anggota.get(i) != null) {
-                    anggota.set(i, mhs);
-                }
-            }
+            anggota.add(mhs);
         } else {
             System.out.println("Anggot kelas penuh!");
         }

@@ -392,7 +392,7 @@ public class Console {
         String kode_mk = input.nextLine();
 
         //searching unique attribute
-        if (currentDosen.isKodeKelasExist(kode_mk) == false) {
+        if (model.isKodeKelasExist(kode_mk) == false) {
             System.out.print("Nama Kelas        : ");
             String nama_mk = input.nextLine();
             System.out.print("Jurusan           : ");
@@ -537,6 +537,18 @@ public class Console {
                     System.out.println("    Deskripsi Tugas : "+t.getDesc()+"\n");
                 }
             }
+        }
+    }
+    
+    public void gabungKelas(){
+        Scanner input = new Scanner(System.in);
+        
+        System.out.print("Masukan kode kelas: ");
+        String kode_kelas = input.nextLine();
+        if(model.isKodeKelasExist(kode_kelas) == true){
+            model.getKelas(kode_kelas).addMahasiswa(currentMahasiswa);
+        } else {
+            System.out.println("Kode kelas tidak terdaftar!");
         }
     }
 
@@ -689,26 +701,10 @@ public class Console {
                         lihatKelas();
                         break;
                     case 2:
-                        
+                        gabungKelas();
                         break;
                     case 3:
-                        
-                        break;
-                    case 4:
-                        
-                        break;
-                    case 5:
-                        
-                        break;
-                    case 6:
-                        
-                        break;
-                    case 7 :
-                        
-                        
-                        break;
-                    case 8:
-                        
+                        lihatTugas();
                         break;
                     case 0:
                         currentMahasiswa = null;

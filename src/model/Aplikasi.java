@@ -86,6 +86,18 @@ public class Aplikasi {
         return -1;
     }
     
+    //searching unique kode_kelas
+    public boolean isKodeKelasExist(String kode_kelas){
+        for(Dosen d : daftarDosen){
+            for(Kelas k : d.getDaftarKelas()){
+                if(k.getKode_kelas().equals(kode_kelas)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    
     //searching unique username
     public boolean isUserMahasiswaExist(String username){
         for(Mahasiswa m : daftarMahasiswa){
@@ -171,6 +183,17 @@ public class Aplikasi {
         for (int i = 0; i < daftarMahasiswa.size(); i++) {
             if (daftarMahasiswa.get(i).getNIM().equals(NIM)) {
                 return daftarMahasiswa.get(i);
+            }
+        }
+        return null;
+    }
+    
+    public Kelas getKelas(String kode_kelas){
+        for(Dosen d : daftarDosen){
+            for(Kelas k : d.getDaftarKelas()){
+                if(k.getKode_kelas().equals(kode_kelas)){
+                    return k;
+                }
             }
         }
         return null;
