@@ -6,6 +6,7 @@
  */
 package model;
 
+import database.Database;
 import java.util.Scanner;
 import model.Aplikasi;
 

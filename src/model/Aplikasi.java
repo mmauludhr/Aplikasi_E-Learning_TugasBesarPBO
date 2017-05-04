@@ -6,6 +6,7 @@
  */
 package model;
 
+import database.Database;
 import java.util.ArrayList;
 
 /**
@@ -18,6 +19,9 @@ public class Aplikasi {
     private ArrayList<Dosen> daftarDosen;
     private ArrayList<Mahasiswa> daftarMahasiswa;
 
+    private Database d = new Database();
+    
+    
     public Aplikasi(){
         daftarMatakuliah = new ArrayList<>();
         daftarDosen = new ArrayList<>();

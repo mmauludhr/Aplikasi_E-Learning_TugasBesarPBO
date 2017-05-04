@@ -4,7 +4,7 @@
  * M. Widadio Ilham	  | 1301154360
  * Afra W. D.	  | 1301150432
  */
-package view;
+package viewOld;
 
 import java.awt.Button;
 import java.awt.event.ActionListener;
